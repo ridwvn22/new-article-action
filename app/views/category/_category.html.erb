@@ -1,0 +1,18 @@
+<% unless category.archived? %>
+<p>
+  <strong>Category:</strong>
+  <%= category.title %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= category.body %>
+</p>
+
+<p>
+    <%= link_to "Destroy Comment", [comment.article, comment], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+  </p>
+<% end %>
