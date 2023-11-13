@@ -1,0 +1,16 @@
+<h1>Categories</h1>
+<ul>
+  <% @categories.each do |category| %>
+    <h2><%= category.name %></h2>
+    <% if category.description.present? %>
+    <p><em><%= "Click the 1st link to see your current articles within this Category or click the second link to update your category!" %></em></p>
+    <% else %>
+    <p><%= "No description available!" %></p>
+    <% end %>
+    <li><%= link_to category.name, category_articles_path(category) %></li>
+    <li>
+    <%= link_to category.name, category %>
+      <%= category.articles.count %> articles
+    </li>
+  <% end %>
+</ul>

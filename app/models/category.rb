@@ -1,16 +1,8 @@
 class Category < ApplicationRecord
-  include Visible
+    has_many :articles
 
-  has_many :articles
-  
-  validates :name, presence: true, uniqueness: true
-  
+    validates :name, presence: true, uniqueness: true
+    validates :description, length: { maximum: 255 }
 
-  VALID_STATUSES = ['public', 'private', 'archived']
-
-  validates :status, inclusion: { in: VALID_STATUSES }
-
-  def archived?
-    status == 'archived'
-end
+    has_one_attached :image
 end

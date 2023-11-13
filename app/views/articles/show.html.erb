@@ -1,14 +1,15 @@
 <h1><%= @article.title %></h1>
-
 <p><%= @article.body %></p>
+<p><strong>Category:</strong> <%= @article.category.name %></p>
 
 <ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Delete", article_path(@article), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
+  <li><%= link_to "Edit", edit_category_article_path(@category, @article) %></li>
+  <li><%= link_to "Delete", category_article_path(@category), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+  } %></li>
 </ul>
+
 
 Our blog has <%= Comment.public_count %> articles and counting!
 <h2>Comments</h2>
@@ -16,9 +17,3 @@ Our blog has <%= Comment.public_count %> articles and counting!
 
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
-
-<h2>Category</h2>
-<%= render @article.category %>
-
-<h2>Add a category:</h2>
-<%= render 'categories/form' %>

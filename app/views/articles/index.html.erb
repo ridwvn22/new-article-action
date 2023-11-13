@@ -6,10 +6,11 @@ Our blog has <%= Article.public_count %> articles and counting!
   <% @articles.each do |article| %>
     <% unless article.archived? %>
       <li>
-        <%= link_to article.title, article %>
+        <%= link_to article.title, category_article_path(article.category, article) %>
       </li>
     <% end %>
   <% end %>
 </ul>
 
-<%= link_to "New Article", new_article_path %>
+<%= link_to "New Article", new_category_article_path(@category) %>
+

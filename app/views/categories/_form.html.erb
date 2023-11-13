@@ -1,0 +1,18 @@
+<%= form_with(model: category, url:new_category_article_path(category),
+method: :post) do |form| %>
+
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+
+    <div>
+      <%= form.submit 'Create Category' %>
+    </div>
+
+    <% end %>
