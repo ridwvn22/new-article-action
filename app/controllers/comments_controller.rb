@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
     http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
 
-    def create
-    @article = Article.find(params[:article_id])
-    # ...
+    def index
+    @comments = Comment.where(article_id: params[:article_id])
+    render json: @comments
     end
     
     def create
