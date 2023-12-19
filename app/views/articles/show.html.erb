@@ -16,5 +16,9 @@ Our blog has <%= Comment.public_count %> articles and counting!
 <%= render @article.comments %>
 
 <h2>Add a comment:</h2>
-<button id="load-comments"> Load Comments </button>
+<div id="category-id" data-category="<%= @category.id %>"></div>
+<button id="load-comments" data-article="<%= @article.id %>"> Load Comments </button>
+
+
+<h2>Add a comment:</h2>
 <%= render 'comments/form' %>

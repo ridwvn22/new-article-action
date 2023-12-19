@@ -1,8 +1,17 @@
-# Ridwan's app
+Options
 
-* Ruby version 7.1.1
+* Install ruby --version
+ sqlite3 --version
+ gem install rails
+rails new blog
+cd blog
+bin/rails server
+rails generate migration add_description_to_categories
+rake db:migrate
+rails backfill:categories_descriptions
+rake db:migrate
 
-* Ruby 3.2.0 on rails console
+
 
 1. you must first validate that each article you created belongs to a category.
 2. Go to your Ruby rails server and create a description(model) for each category, do this by generating a migration: [rails generate migration add_description_to_categories] and then: [rake db:migrate to migrate the database]. In adition, you need to validate the added column(description) into your Category.rb. Next, add your 'description' to category_params in your category controller. Lastly, create an index.html.erb into views > categories that includes and if else statement that gives the users optional description for each category. DON'T forget to link your path, otherwsie you'll come across an error.

@@ -1,0 +1,18 @@
+#card-container{
+    background-color: white;
+    
+}
+
+#donation-form{
+    font-size: 25px;
+    color:aliceblue;
+    width: 400px;
+}
+h1{
+    text-shadow: 2px 2px;
+}
+
+.container{
+    height: 100px;
+    width: 100%;
+}

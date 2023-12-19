@@ -1,0 +1,42 @@
+<h1>Make a Donation</h1>
+
+<%= form_with(model: @donation, url: donations_path, 
+method: 'post', local: true, id: 'donation-form') do |
+    form| %>
+
+    <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_area :first_name %>
+    </div>
+
+    <div class="field">
+        <%= form.label :last_name %>
+        <%= form.text_area :last_name %>
+
+    <div class="field">
+        <%= form.label :email %>
+        <%= form.text_area :email %>
+    </div>
+    
+    <div class="field">
+            <%= form.label :amount %>
+            <%= form.text_area :amount %>    
+    </div>
+
+    <div id="card-container">
+        <div id="card-element" class="form-control">
+
+        </div>
+        <div id="card-errors" role="alert"></div>
+    </div>
+    <br/>
+    <button id="donate-button" class="btn btn-primary"> Donate </button>
+    <% end %>
+
+
+
+
+
+
+    
+    

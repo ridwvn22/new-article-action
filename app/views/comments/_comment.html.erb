@@ -8,6 +8,8 @@
     <strong>Comment:</strong>
     <%= comment.body %>
   </p>
+  
+  <br/><button class="like-button">👍🏾</button>
 
   <p>
   <%= link_to "Delete Comment", category_article_comment_path(@category, @article, comment), data: {

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-    http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
-
+  before_action :authenticate_user!, only: :destory
+  
     def index
     @comments = Comment.where(article_id: params[:article_id])
     render json: @comments
@@ -23,6 +23,11 @@ class CommentsController < ApplicationController
       
       @comment.destroy
       redirect_to category_article_path(@category, @article), status: :see_other
+    end
+
+    def like
+      @comment = Comment.find(params[:comment_id])
+      render json: @comments
     end
   
     private

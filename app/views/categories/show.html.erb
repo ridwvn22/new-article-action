@@ -1,11 +1,29 @@
+<br>
 <h1><%= @category.name %></h1>
 
 <p><%= @category.description %></p>
 
-<li><%= link_to "Edit", edit_category_path(@category) %></li>
-<li><%= link_to "Delete", @category, data: {
+<%= link_to "Edit", edit_category_path(@category), class: "btn btn-dark"  %> |
+<%= link_to "Delete", category_path(@category), data: {
     turbo_method: :delete,
     turbo_confirm: "Are you sure?"
-  } %></li>
+}, class: "btn btn-danger"  %>
 
+<br><br>
+
+<h2><%= @category.name %> Articles</h2>
+
+<p>Total Articles: <%= @category.total_articles %></p>
+
+<ul>
+  <% @category.articles.last_five.each do |article| %>
+    <% unless article.archived? %>
+      <li>
+        <%= link_to article.title, category_article_path(article.category, article) %>
+      </li>
+    <% end %>
+  <% end %>
 </ul>
+
+
+<%= link_to "New Article", new_category_article_path(@category), class: "btn btn-dark"  %>

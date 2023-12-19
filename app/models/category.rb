@@ -4,5 +4,7 @@ class Category < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     validates :description, length: { maximum: 255 }
 
-    has_one_attached :image
+    def total_articles
+        articles.count
+      end
 end

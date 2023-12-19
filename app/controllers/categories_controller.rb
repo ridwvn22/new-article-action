@@ -1,61 +1,50 @@
-class CategoriesController < ApplicationController
-    # before_action :set_category, only: [:show, :edit, :update, :destroy]
-    http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
-    
-    def index
-      @categories = Category.all
-    end
-  
-    # def show
-    #   # Display category details and associated articles
-    #   @articles = @category.articles
-    # end
+    class CategoriesController < ApplicationController
+        before_action :authenticate_user!, except: [:index, :show]
+        before_action :set_category, only: [:show, :edit, :update, :destroy]
+        
+        def index
+        @categories = Category.all
+        end
 
-    def show
-        @category = Category.find(params[:id])
-    end
+        def show
+        end
 
-    def edit
-        @category = Category.find(params[:id])
-    end
+        def edit
+        end
 
-    def new
-        @category = Category.new
-    end
+        def new
+            @category = Category.new
+        end
 
-    def create
-        @category = Category.new(category_params)
-        if @category.save
-        redirect_to @category, notice: 'Category was created. '
-        else
-        render :new
-    end
-
-    def update
-        @category = Category.find(params[:id])
-        if
-        @category.update(category_params)
-            redirect_to @category, notice: 'Category was updated. '
-        else
-            render :edit
-    end
-    
-    def destroy
-        @category = Category.find(params[:id])
-        @category.destroy
-        redirect_to categories_path, notice: 'Category was deleted. '
+        def create
+            @category = Category.new(category_params)
+            if @category.save
+            redirect_to @category, notice: 'Category was created.'
+            else
+            render :new
         end
     end
 
-    private
-  
-    def set_category
-      @category = Category.find(params[:id])
+        def update
+            if @category.update(category_params)
+                redirect_to @category, notice: 'Category was updated.'
+            else
+                render :edit
+        end
     end
+        
+        def destroy
+            @category.destroy
+            redirect_to categories_path, notice: 'Category was deleted.'
+            end
 
-    def category_params
+        private
+    
+        def set_category
+        @category = Category.find(params[:id])
+        end
 
+        def category_params
         params.require(:category).permit(:name, :description)
+        end
     end
-  end
-end
