@@ -60,14 +60,51 @@ class ArticleTest < ActiveSupport::TestCase
     )
 
     assert_not article.save, "Saved the article without a category"
-
-    test "should return the last five articles" do
-      articles = []5.times do |i|
-        articles << Article.create(title: "Article #{i}", body: "Body #{i}")
-      end
-
-      last_five_articles = Article.last_five
-
-      assert_equal articles.last(5), last_five_articles, "Could not get the last five articles"
   end
+  test "should return the last five articles" do
+    articles = []
+    5.times do |i|
+      articles << Article.create(title: "Article #{i}", body: "Body #{i}")
+    end
+    last_five_articles = Article.last_five
+  
+    assert_equal articles.last(5), last_five_articles, "Could not get the last five articles"
+  end
+  test "should get index" do
+    get articles_url
+    assert_response :success
+    end
+    
+    test "should show article" do
+    article = articles(:one)
+    get article_url(article)
+    assert_response :success
+    end
+    test "should get new" do
+      get new_article_url
+      assert_response :success
+    end
+  
+    test "should create article" do
+      assert_difference('Article.count') do
+        post articles_url, params: { article: { title: "New Article", body: "New Article Body" } }
+      end
+      assert_redirected_to article_url(Article.last)
+    end
+  
+    test "should get edit" do
+      get edit_article_url(@article)
+      assert_response :success
+    end
+
+    test "should update article" do
+      assert_redirected_to article_url(@article)
+      @article.reload
+      assert_equal "Updated Article", @article.title
+    end
+  
+    test "should destroy article" do
+      assert_difference('Article.count', -1) do
+        delete article_url(@article)
+    end
 end
